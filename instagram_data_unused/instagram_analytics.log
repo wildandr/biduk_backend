@@ -1,0 +1,24 @@
+2025-07-05 05:06:48,775 - INFO - ====== WebDriver manager ======
+2025-07-05 05:06:48,908 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:06:49,153 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:06:49,380 - INFO - Driver [/Users/owwl/.wdm/drivers/chromedriver/mac64/137.0.7151.119/chromedriver-mac-arm64/chromedriver] found in cache
+2025-07-05 05:13:10,635 - INFO - ====== WebDriver manager ======
+2025-07-05 05:13:10,779 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:13:11,031 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:13:11,303 - INFO - Driver [/Users/owwl/.wdm/drivers/chromedriver/mac64/137.0.7151.119/chromedriver-mac-arm64/chromedriver] found in cache
+2025-07-05 05:13:39,625 - INFO - ====== WebDriver manager ======
+2025-07-05 05:13:39,736 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:13:40,269 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:13:40,790 - INFO - Driver [/Users/owwl/.wdm/drivers/chromedriver/mac64/137.0.7151.119/chromedriver-mac-arm64/chromedriver] found in cache
+2025-07-05 05:13:52,778 - INFO - Starting scheduled Instagram analytics task
+2025-07-05 05:13:52,778 - INFO - ====== WebDriver manager ======
+2025-07-05 05:13:52,897 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:13:53,114 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:13:53,371 - INFO - Driver [/Users/owwl/.wdm/drivers/chromedriver/mac64/137.0.7151.119/chromedriver-mac-arm64/chromedriver] found in cache
+2025-07-05 05:13:54,133 - INFO - Browser initialized
+2025-07-05 05:18:36,526 - INFO - Instagram analytics completed successfully
+2025-07-05 05:18:36,729 - INFO - Browser closed
+2025-07-05 05:18:36,734 - INFO - ====== WebDriver manager ======
+2025-07-05 05:18:36,883 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:18:37,118 - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-05 05:18:37,361 - INFO - Driver [/Users/owwl/.wdm/drivers/chromedriver/mac64/137.0.7151.119/chromedriver-mac-arm64/chromedriver] found in cache

@@ -1,0 +1,4 @@
+pembuatan dokumentasi backend django berupa json-json untuk login, register, visualisasi, menampilkan data, dan crud lain.
+
+- backend menggunakan django
+- autentikasi keamanan secukupnya saja

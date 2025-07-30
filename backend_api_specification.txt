@@ -1,0 +1,336 @@
+# API DOCUMENTATION FOR BIDUK-BIDUK TOURISM INFORMATION SYSTEM
+
+## AUTHENTICATION APIS
+1. POST /api/auth/register
+   - Description: Register new user
+   - Request Body: username, email, password, full_name, phone_number (optional)
+   - Response: user_id, token, user_details
+   - Status Codes: 201 (Created), 400 (Bad Request)
+
+2. POST /api/auth/login
+   - Description: User login
+   - Request Body: username/email, password
+   - Response: token, user_details
+   - Status Codes: 200 (OK), 401 (Unauthorized)
+
+3. POST /api/auth/logout
+   - Description: Logout user
+   - Headers: Authorization Token
+   - Response: success message
+   - Status Codes: 200 (OK), 401 (Unauthorized)
+
+4. GET /api/auth/user
+   - Description: Get current user information
+   - Headers: Authorization Token
+   - Response: user_details
+   - Status Codes: 200 (OK), 401 (Unauthorized)
+
+5. PUT /api/auth/user
+   - Description: Update user information
+   - Headers: Authorization Token
+   - Request Body: full_name, email, phone_number, profile_image
+   - Response: updated user_details
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized)
+
+6. POST /api/auth/password/change
+   - Description: Change user password
+   - Headers: Authorization Token
+   - Request Body: old_password, new_password
+   - Response: success message
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized)
+
+7. POST /api/auth/password/reset
+   - Description: Request password reset
+   - Request Body: email
+   - Response: success message
+   - Status Codes: 200 (OK), 400 (Bad Request)
+
+8. POST /api/auth/password/reset/confirm
+   - Description: Confirm password reset with token
+   - Request Body: token, new_password
+   - Response: success message
+   - Status Codes: 200 (OK), 400 (Bad Request)
+
+
+## DESTINATION APIS
+1. GET /api/destinations
+   - Description: Get all tourist destinations
+   - Query Parameters: category, page, limit, sort_by, search
+   - Response: list of destinations, pagination info
+   - Status Codes: 200 (OK)
+
+2. GET /api/destinations/{id}
+   - Description: Get detailed information about a specific destination
+   - Response: destination details
+   - Status Codes: 200 (OK), 404 (Not Found)
+
+3. POST /api/destinations
+   - Description: Create new destination (Admin only)
+   - Headers: Authorization Token
+   - Request Body: name, description, category_id, location, coordinates, images, facilities, etc.
+   - Response: created destination
+   - Status Codes: 201 (Created), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden)
+
+4. PUT /api/destinations/{id}
+   - Description: Update destination information (Admin only)
+   - Headers: Authorization Token
+   - Request Body: name, description, category_id, location, coordinates, images, facilities, etc.
+   - Response: updated destination
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+5. DELETE /api/destinations/{id}
+   - Description: Delete destination (Admin only)
+   - Headers: Authorization Token
+   - Response: success message
+   - Status Codes: 204 (No Content), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+6. GET /api/destinations/categories
+   - Description: Get all destination categories
+   - Response: list of categories
+   - Status Codes: 200 (OK)
+
+
+## ARTICLE/NEWS APIS
+1. GET /api/articles
+   - Description: Get all articles/news
+   - Query Parameters: category, page, limit, sort_by, search, published_only
+   - Response: list of articles, pagination info
+   - Status Codes: 200 (OK)
+
+2. GET /api/articles/{id}
+   - Description: Get detailed information about a specific article
+   - Response: article details
+   - Status Codes: 200 (OK), 404 (Not Found)
+
+3. POST /api/articles
+   - Description: Create new article (Admin only)
+   - Headers: Authorization Token
+   - Request Body: title, content, category_id, featured_image, tags, status (draft/published), publish_date
+   - Response: created article
+   - Status Codes: 201 (Created), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden)
+
+4. PUT /api/articles/{id}
+   - Description: Update article information (Admin only)
+   - Headers: Authorization Token
+   - Request Body: title, content, category_id, featured_image, tags, status, publish_date
+   - Response: updated article
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+5. DELETE /api/articles/{id}
+   - Description: Delete article (Admin only)
+   - Headers: Authorization Token
+   - Response: success message
+   - Status Codes: 204 (No Content), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+6. GET /api/articles/categories
+   - Description: Get all article categories
+   - Response: list of categories
+   - Status Codes: 200 (OK)
+
+
+## FACILITY APIS
+1. GET /api/facilities
+   - Description: Get all facilities (hotels, restaurants, transportation, etc.)
+   - Query Parameters: type, page, limit, sort_by, search
+   - Response: list of facilities, pagination info
+   - Status Codes: 200 (OK)
+
+2. GET /api/facilities/{id}
+   - Description: Get detailed information about a specific facility
+   - Response: facility details
+   - Status Codes: 200 (OK), 404 (Not Found)
+
+3. POST /api/facilities
+   - Description: Create new facility (Admin only)
+   - Headers: Authorization Token
+   - Request Body: name, description, type, location, coordinates, contact_info, images, etc.
+   - Response: created facility
+   - Status Codes: 201 (Created), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden)
+
+4. PUT /api/facilities/{id}
+   - Description: Update facility information (Admin only)
+   - Headers: Authorization Token
+   - Request Body: name, description, type, location, coordinates, contact_info, images, etc.
+   - Response: updated facility
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+5. DELETE /api/facilities/{id}
+   - Description: Delete facility (Admin only)
+   - Headers: Authorization Token
+   - Response: success message
+   - Status Codes: 204 (No Content), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+6. GET /api/facilities/types
+   - Description: Get all facility types
+   - Response: list of types
+   - Status Codes: 200 (OK)
+
+
+## GIS VISUALIZATION APIS
+1. GET /api/gis/points
+   - Description: Get all GIS points for map visualization
+   - Query Parameters: type, category, bounds
+   - Response: list of points with coordinates and type info
+   - Status Codes: 200 (OK)
+
+2. GET /api/gis/layers
+   - Description: Get available GIS layers
+   - Response: list of layers with metadata
+   - Status Codes: 200 (OK)
+
+3. GET /api/gis/points/{id}
+   - Description: Get detailed information about a specific GIS point
+   - Response: point details with related entity info
+   - Status Codes: 200 (OK), 404 (Not Found)
+
+4. POST /api/gis/points
+   - Description: Create new GIS point (Admin only)
+   - Headers: Authorization Token
+   - Request Body: type, name, coordinates, properties, related_entity_id, etc.
+   - Response: created point
+   - Status Codes: 201 (Created), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden)
+
+5. PUT /api/gis/points/{id}
+   - Description: Update GIS point (Admin only)
+   - Headers: Authorization Token
+   - Request Body: type, name, coordinates, properties, related_entity_id, etc.
+   - Response: updated point
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+6. DELETE /api/gis/points/{id}
+   - Description: Delete GIS point (Admin only)
+   - Headers: Authorization Token
+   - Response: success message
+   - Status Codes: 204 (No Content), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+
+## GALLERY APIS
+1. GET /api/gallery
+   - Description: Get all gallery items (images/videos)
+   - Query Parameters: type (image/video), category, page, limit
+   - Response: list of gallery items, pagination info
+   - Status Codes: 200 (OK)
+
+2. GET /api/gallery/{id}
+   - Description: Get detailed information about a specific gallery item
+   - Response: gallery item details
+   - Status Codes: 200 (OK), 404 (Not Found)
+
+3. POST /api/gallery
+   - Description: Upload new gallery item (Admin only)
+   - Headers: Authorization Token
+   - Request Body: file (image/video), title, description, category_id, tags
+   - Response: created gallery item
+   - Status Codes: 201 (Created), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden)
+
+4. PUT /api/gallery/{id}
+   - Description: Update gallery item information (Admin only)
+   - Headers: Authorization Token
+   - Request Body: title, description, category_id, tags
+   - Response: updated gallery item
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+5. DELETE /api/gallery/{id}
+   - Description: Delete gallery item (Admin only)
+   - Headers: Authorization Token
+   - Response: success message
+   - Status Codes: 204 (No Content), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+6. GET /api/gallery/categories
+   - Description: Get all gallery categories
+   - Response: list of categories
+   - Status Codes: 200 (OK)
+
+
+## EVENT APIS
+1. GET /api/events
+   - Description: Get all events
+   - Query Parameters: status (upcoming/ongoing/past), page, limit, sort_by, search
+   - Response: list of events, pagination info
+   - Status Codes: 200 (OK)
+
+2. GET /api/events/{id}
+   - Description: Get detailed information about a specific event
+   - Response: event details
+   - Status Codes: 200 (OK), 404 (Not Found)
+
+3. POST /api/events
+   - Description: Create new event (Admin only)
+   - Headers: Authorization Token
+   - Request Body: title, description, start_date, end_date, location, coordinates, image, etc.
+   - Response: created event
+   - Status Codes: 201 (Created), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden)
+
+4. PUT /api/events/{id}
+   - Description: Update event information (Admin only)
+   - Headers: Authorization Token
+   - Request Body: title, description, start_date, end_date, location, coordinates, image, etc.
+   - Response: updated event
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+5. DELETE /api/events/{id}
+   - Description: Delete event (Admin only)
+   - Headers: Authorization Token
+   - Response: success message
+   - Status Codes: 204 (No Content), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+## SOCIAL MEDIA MANAGEMENT APIS (ADMIN ONLY)
+1. GET /api/social/posts
+   - Description: Get all social media posts
+   - Headers: Authorization Token
+   - Query Parameters: platform, status (scheduled/published/draft), page, limit
+   - Response: list of posts, pagination info
+   - Status Codes: 200 (OK), 401 (Unauthorized), 403 (Forbidden)
+
+2. GET /api/social/posts/{id}
+   - Description: Get details of a specific social media post
+   - Headers: Authorization Token
+   - Response: post details
+   - Status Codes: 200 (OK), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+3. POST /api/social/posts
+   - Description: Create new social media post
+   - Headers: Authorization Token
+   - Request Body: content, media, platform, schedule_time, status
+   - Response: created post
+   - Status Codes: 201 (Created), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden)
+
+4. PUT /api/social/posts/{id}
+   - Description: Update social media post
+   - Headers: Authorization Token
+   - Request Body: content, media, schedule_time, status
+   - Response: updated post
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+5. DELETE /api/social/posts/{id}
+   - Description: Delete social media post
+   - Headers: Authorization Token
+   - Response: success message
+   - Status Codes: 204 (No Content), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+6. POST /api/social/posts/{id}/publish
+   - Description: Publish a scheduled/draft post immediately
+   - Headers: Authorization Token
+   - Response: published post details
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found)
+
+
+## CHATBOT APIS
+1. POST /api/chatbot/message
+   - Description: Send message to chatbot
+   - Request Body: message, language
+   - Response: chatbot reply
+   - Status Codes: 200 (OK), 400 (Bad Request)
+
+2. GET /api/chatbot/content
+   - Description: Get the chatbot descriptive content (Admin only)
+   - Headers: Authorization Token
+   - Response: content object with descriptive paragraphs
+   - Status Codes: 200 (OK), 401 (Unauthorized), 403 (Forbidden)
+
+3. PUT /api/chatbot/content
+   - Description: Update the chatbot data content (Admin only)
+   - Headers: Authorization Token
+   - Request Body: content (descriptive paragraphs about locations, facilities, etc.)
+   - Response: updated content object
+   - Status Codes: 200 (OK), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden)

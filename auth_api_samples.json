@@ -1,0 +1,225 @@
+{
+  "authentication": {
+    "register": {
+      "endpoint": "/api/auth/register",
+      "method": "POST",
+      "request": {
+        "username": "john_doe",
+        "email": "john.doe@example.com",
+        "password": "securePassword123",
+        "full_name": "John Doe",
+        "phone_number": "081234567890"
+      },
+      "response": {
+        "status": 201,
+        "body": {
+          "user_id": 123,
+          "username": "john_doe",
+          "email": "john.doe@example.com",
+          "full_name": "John Doe",
+          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9obl9kb2UiLCJleHAiOjE3MTk0NTYyNzR9.abc123def456ghi789",
+          "created_at": "2025-06-23T08:30:00Z"
+        }
+      },
+      "error_response": {
+        "status": 400,
+        "body": {
+          "error": "validation_error",
+          "detail": {
+            "username": ["This username is already taken."],
+            "email": ["Enter a valid email address."],
+            "password": ["Password must be at least 8 characters long."]
+          }
+        }
+      }
+    },
+
+    "login": {
+      "endpoint": "/api/auth/login",
+      "method": "POST",
+      "request": {
+        "username": "john_doe",
+        "password": "securePassword123"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "user_id": 123,
+          "username": "john_doe",
+          "email": "john.doe@example.com",
+          "full_name": "John Doe",
+          "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9obl9kb2UiLCJleHAiOjE3MTk0NTYyNzR9.abc123def456ghi789",
+          "last_login": "2025-06-23T08:45:00Z"
+        }
+      },
+      "error_response": {
+        "status": 401,
+        "body": {
+          "error": "authentication_failed",
+          "detail": "Unable to log in with provided credentials."
+        }
+      }
+    },
+
+    "logout": {
+      "endpoint": "/api/auth/logout",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9obl9kb2UiLCJleHAiOjE3MTk0NTYyNzR9.abc123def456ghi789"
+      },
+      "request": {},
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Successfully logged out."
+        }
+      },
+      "error_response": {
+        "status": 401,
+        "body": {
+          "error": "authentication_failed",
+          "detail": "Invalid token."
+        }
+      }
+    },
+
+    "get_user": {
+      "endpoint": "/api/auth/user",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9obl9kb2UiLCJleHAiOjE3MTk0NTYyNzR9.abc123def456ghi789"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "id": 123,
+          "username": "john_doe",
+          "email": "john.doe@example.com",
+          "full_name": "John Doe",
+          "phone_number": "081234567890",
+          "is_admin": false,
+          "date_joined": "2025-06-15T10:00:00Z",
+          "last_login": "2025-06-23T08:45:00Z"
+        }
+      },
+      "error_response": {
+        "status": 401,
+        "body": {
+          "error": "authentication_failed",
+          "detail": "Authentication credentials were not provided."
+        }
+      }
+    },
+
+    "update_user": {
+      "endpoint": "/api/auth/user",
+      "method": "PUT",
+      "headers": {
+        "Authorization": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9obl9kb2UiLCJleHAiOjE3MTk0NTYyNzR9.abc123def456ghi789"
+      },
+      "request": {
+        "full_name": "John A. Doe",
+        "email": "john.updated@example.com",
+        "phone_number": "089876543210",
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "id": 123,
+          "username": "john_doe",
+          "email": "john.updated@example.com",
+          "full_name": "John A. Doe",
+          "phone_number": "089876543210",
+          "is_admin": false,
+          "date_joined": "2025-06-15T10:00:00Z",
+          "last_login": "2025-06-23T08:45:00Z"
+        }
+      },
+      "error_response": {
+        "status": 400,
+        "body": {
+          "error": "validation_error",
+          "detail": {
+            "email": ["Enter a valid email address."],
+          }
+        }
+      }
+    },
+
+    "change_password": {
+      "endpoint": "/api/auth/password/change",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInVzZXJuYW1lIjoiam9obl9kb2UiLCJleHAiOjE3MTk0NTYyNzR9.abc123def456ghi789"
+      },
+      "request": {
+        "old_password": "securePassword123",
+        "new_password": "evenMoreSecure456"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Password successfully changed."
+        }
+      },
+      "error_response": {
+        "status": 400,
+        "body": {
+          "error": "validation_error",
+          "detail": {
+            "old_password": ["Incorrect password."],
+            "new_password": ["Password must be at least 8 characters long."]
+          }
+        }
+      }
+    },
+
+    "request_password_reset": {
+      "endpoint": "/api/auth/password/reset",
+      "method": "POST",
+      "request": {
+        "email": "john.doe@example.com"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Password reset e-mail has been sent."
+        }
+      },
+      "error_response": {
+        "status": 400,
+        "body": {
+          "error": "validation_error",
+          "detail": {
+            "email": ["User with this email does not exist."]
+          }
+        }
+      }
+    },
+
+    "confirm_password_reset": {
+      "endpoint": "/api/auth/password/reset/confirm",
+      "method": "POST",
+      "request": {
+        "token": "6b4d7a8e-5f2c-42d1-9e8b-7a3b5f2c1d9e",
+        "new_password": "newSecurePassword789"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Password has been reset successfully."
+        }
+      },
+      "error_response": {
+        "status": 400,
+        "body": {
+          "error": "validation_error",
+          "detail": {
+            "token": ["Invalid or expired token."],
+            "new_password": ["Password must be at least 8 characters long."]
+          }
+        }
+      }
+    }
+  }
+}
